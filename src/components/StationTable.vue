@@ -71,6 +71,15 @@ export default {
   methods: {
     confirmPackage (index, row) {
       this.$store.dispatch('updatePackageByStatusIsTwo', { package: { waybillNumber: row.waybillNumber } })
+        .then(() => {
+          this.$message({
+            message: '确认成功',
+            type: 'success'
+          })
+        })
+        .catch(() => {
+          this.$message.error('确认收货失败')
+        })
     }
   }
 }

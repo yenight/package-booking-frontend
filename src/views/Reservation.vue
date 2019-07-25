@@ -37,12 +37,14 @@ export default {
       this.$store.dispatch('updatePackageTime', { package: this.form })
         .then(() => {
           this.$message({
-            message: '添加数据成功',
+            message: '预约取件成功',
             type: 'success'
           })
           this.goToPackageStation()
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+          this.$message.error('营业时间为：9：00-20：00')
+        })
     },
     onCancel () {
       this.form.waybillNumber = 0

@@ -19,7 +19,7 @@ const mutations = {
     state.packageList[index].bookTime = payload.package.bookTime
   },
   updatePackageByStatusIsTwo (state, payload) {
-    const index = state.packageList.findIndex(value => value.waybillNumber.toString() === payload.package.waybillNumber)
+    const index = state.packageList.findIndex(value => value.waybillNumber === payload.package.waybillNumber)
     state.packageList[index].status = 2
   }
 }

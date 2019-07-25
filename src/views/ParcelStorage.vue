@@ -36,12 +36,15 @@ export default {
       this.$store.dispatch('createPackage', { package: this.form })
         .then(() => {
           this.$message({
-            message: '添加数据成功',
+            message: '包裹入库成功',
             type: 'success'
           })
           this.goToPackageStation()
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+          console.log(error)
+          this.$message.error('包裹入库失败')
+        })
     },
     onCancel () {
       this.form.waybillNumber = 0
