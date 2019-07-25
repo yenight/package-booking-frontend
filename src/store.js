@@ -29,8 +29,12 @@ export default new Vuex.Store({
       state.packageList.push(payload.package)
     },
     updatePackageTime (state, payload) {
-      const index = state.packageList.indexOf(payload.package.waybillNumber)
+      const index = state.packageList.findIndex(value => value.waybillNumber === payload.package.waybillNumber)
       state.packageList[index].bookTime = payload.package.bookTime
+    },
+    updatePackageByStatusIsTwo (state, payload) {
+      const index = state.packageList.findIndex(value => value.waybillNumber === payload.package.waybillNumber)
+      state.packageList[index].status = 2
     }
   },
   actions: {
@@ -68,7 +72,17 @@ export default new Vuex.Store({
       return new Promise((resolve, reject) => {
         axios.patch('/deliveryPackages', payload.package)
           .then(response => {
-            commit('createPackage', payload)
+            commit('updatePackageTime', payload)
+            resolve('get data success')
+          })
+          .catch(error => reject(error))
+      })
+    },
+    updatePackageByStatusIsTwo ({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios.patch('/deliveryPackages', payload.package)
+          .then(response => {
+            commit('updatePackageByStatusIsTwo', payload)
             resolve('get data success')
           })
           .catch(error => reject(error))

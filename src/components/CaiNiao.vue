@@ -78,7 +78,7 @@ export default {
   },
   methods: {
     confirmPackage (index, row) {
-      console.log(index, row)
+      this.$store.dispatch('updatePackageByStatusIsTwo', { package: { waybillNumber: row.waybillNumber } })
     },
     clickAll () {
       this.$store.dispatch('getPackageList')
