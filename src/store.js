@@ -9,20 +9,24 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    packageList: []
+    packageList: [],
+    activeMenuItem: 'cai-niao'
   },
   mutations: {
+    changeActiveMenuItem (state, payload) {
+      state.activeMenuItem = payload.activeMenuItem
+    },
     getPackageList (state, payload) {
       state.packageList = payload.packageList
-    },
-    getPackageListByStatus (state, payload) {
-      state.packageList = payload.packageList.filter(x => x.status === payload.status)
     },
     addPackage (state, payload) {
       state.packageList.push(payload.package)
     },
     changePackageStatus (state, payload) {
       state.packageList[payload.index].status = payload.status
+    },
+    createPackage (state, payload) {
+      state.packageList.push(payload.package)
     }
   },
   actions: {
@@ -41,6 +45,16 @@ export default new Vuex.Store({
         axios.get('/deliveryPackages?status=' + payload.status)
           .then(response => {
             commit('getPackageList', { packageList: response.data })
+            resolve('get data success')
+          })
+          .catch(error => reject(error))
+      })
+    },
+    createPackage ({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios.post('/deliveryPackages', payload.package)
+          .then(response => {
+            commit('createPackage', { package: response.data })
             resolve('get data success')
           })
           .catch(error => reject(error))

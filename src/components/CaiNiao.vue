@@ -93,7 +93,8 @@ export default {
       this.$store.dispatch('getPackageListByStatus', {status: 0})
     },
     addPackage () {
-
+      this.$store.commit('changeActiveMenuItem', { activeMenuItem: 'parcel-storage' })
+      this.$router.push('/parcel-storage')
     }
   }
 }

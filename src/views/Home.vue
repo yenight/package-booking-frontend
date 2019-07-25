@@ -2,7 +2,7 @@
   <el-container class="home">
     <el-container class="home-content">
       <el-aside hide-trigger class="home-sider">
-        <el-menu default-active="1" style="height: 100%" :router="true">
+        <el-menu :default-active="activeMenu" style="height: 100%" :router="true" @select="selectMenuItem">
           <el-menu-item-group title="Menu">
             <el-menu-item index="cai-niao" >
               <i class="el-icon-menu"></i>
@@ -33,6 +33,11 @@ export default {
   components: {
 
   },
+  computed: {
+    activeMenu: function () {
+      return this.$store.state.activeMenuItem
+    }
+  },
   data: function () {
     return {
       modalValue: false,
@@ -41,7 +46,9 @@ export default {
     }
   },
   methods: {
-
+    selectMenuItem (index, indexPath) {
+      this.$store.commit('changeActiveMenuItem', { activeMenuItem: index })
+    }
   }
 }
 </script>
