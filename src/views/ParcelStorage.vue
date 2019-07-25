@@ -39,6 +39,7 @@ export default {
             message: '添加数据成功',
             type: 'success'
           })
+          this.goToPackageStation()
         })
         .catch(error => console.log(error))
     },
@@ -46,6 +47,11 @@ export default {
       this.form.waybillNumber = 0
       this.form.customerName = ''
       this.form.phoneNumber = ''
+      this.goToPackageStation()
+    },
+    goToPackageStation () {
+      this.$store.commit('changeActiveMenuItem', { activeMenuItem: 'package-station' })
+      this.$router.push('/package-station')
     }
   }
 }
