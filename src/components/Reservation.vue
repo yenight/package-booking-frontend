@@ -14,7 +14,7 @@
         </el-date-picker>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">立即创建</el-button>
+        <el-button type="primary" @click="onSubmit">立即预约</el-button>
         <el-button @click="onCancel">取消</el-button>
       </el-form-item>
     </el-form>
@@ -34,7 +34,14 @@ export default {
   },
   methods: {
     onSubmit () {
-      console.log(this.form.bookTime)
+      this.$store.dispatch('updatePackageTime', { package: this.form })
+        .then(() => {
+          this.$message({
+            message: '添加数据成功',
+            type: 'success'
+          })
+        })
+        .catch(error => console.log(error))
     },
     onCancel () {
       this.form.waybillNumber = 0

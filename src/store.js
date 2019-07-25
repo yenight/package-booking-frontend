@@ -27,6 +27,10 @@ export default new Vuex.Store({
     },
     createPackage (state, payload) {
       state.packageList.push(payload.package)
+    },
+    updatePackageTime (state, payload) {
+      const index = state.packageList.indexOf(payload.package.waybillNumber)
+      state.packageList[index].bookTime = payload.package.bookTime
     }
   },
   actions: {
@@ -55,6 +59,16 @@ export default new Vuex.Store({
         axios.post('/deliveryPackages', payload.package)
           .then(response => {
             commit('createPackage', { package: response.data })
+            resolve('get data success')
+          })
+          .catch(error => reject(error))
+      })
+    },
+    updatePackageTime ({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios.patch('/deliveryPackages', payload.package)
+          .then(response => {
+            commit('createPackage', payload)
             resolve('get data success')
           })
           .catch(error => reject(error))

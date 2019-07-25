@@ -40,6 +40,7 @@ export default {
             type: 'success'
           })
         })
+        .catch(error => console.log(error))
     },
     onCancel () {
       this.form.waybillNumber = 0
