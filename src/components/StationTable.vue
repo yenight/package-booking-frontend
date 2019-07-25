@@ -42,6 +42,7 @@
           <template slot-scope="scope">
             <el-button
               size="mini"
+              v-if="scope.row.status !== 2"
               @click="confirmPackage(scope.$index, scope.row)">确认收货</el-button>
           </template>
         </el-table-column>
