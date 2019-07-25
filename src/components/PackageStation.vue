@@ -57,7 +57,7 @@
 
 <script>
 export default {
-  name: 'CaiNiao',
+  name: 'PackageStation',
   data: function () {
     return {
       statusList: [

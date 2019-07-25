@@ -4,7 +4,7 @@
       <el-aside hide-trigger class="home-sider">
         <el-menu :default-active="activeMenu" style="height: 100%" :router="true" @select="selectMenuItem">
           <el-menu-item-group title="Menu">
-            <el-menu-item index="cai-niao" >
+            <el-menu-item index="package-station" >
               <i class="el-icon-menu"></i>
               <span slot="title">菜鸟驿站</span>
             </el-menu-item>

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import CaiNiao from './components/CaiNiao'
+import PackageStation from './components/PackageStation'
 import Reservation from './components/Reservation'
 import ParcelStorage from './components/ParcelStorage'
 
@@ -16,7 +16,7 @@ export default new Router({
       name: 'home',
       component: Home,
       children: [
-        { path: '/cai-niao', name: 'cai-niao', component: CaiNiao },
+        { path: '/package-station', name: 'package-station', component: PackageStation },
         { path: '/parcel-storage', name: 'parcel-storage', component: ParcelStorage },
         { path: '/reservation', name: 'reservation', component: Reservation }
       ]

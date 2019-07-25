@@ -10,7 +10,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     packageList: [],
-    activeMenuItem: 'cai-niao'
+    activeMenuItem: 'package-station'
   },
   mutations: {
     changeActiveMenuItem (state, payload) {
@@ -29,11 +29,11 @@ export default new Vuex.Store({
       state.packageList.push(payload.package)
     },
     updatePackageTime (state, payload) {
-      const index = state.packageList.findIndex(value => value.waybillNumber === payload.package.waybillNumber)
+      const index = state.packageList.findIndex(value => value.waybillNumber.toString() === payload.package.waybillNumber)
       state.packageList[index].bookTime = payload.package.bookTime
     },
     updatePackageByStatusIsTwo (state, payload) {
-      const index = state.packageList.findIndex(value => value.waybillNumber === payload.package.waybillNumber)
+      const index = state.packageList.findIndex(value => value.waybillNumber.toString() === payload.package.waybillNumber)
       state.packageList[index].status = 2
     }
   },
