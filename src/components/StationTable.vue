@@ -1,11 +1,5 @@
 <template>
     <div>
-      <h1>菜鸟驿站</h1>
-      <el-button @click="clickAll">ALL</el-button>
-      <el-button @click="clickBooked">已预约</el-button>
-      <el-button @click="clickPackaged">已取件</el-button>
-      <el-button @click="clickNotBooked">未预约</el-button>
-      <el-button @click="addPackage">+添加</el-button>
       <el-table
         :data="tableData"
         style="width: 100%">
@@ -57,7 +51,7 @@
 
 <script>
 export default {
-  name: 'PackageStation',
+  name: 'StationTable',
   data: function () {
     return {
       statusList: [
@@ -68,9 +62,6 @@ export default {
       ]
     }
   },
-  mounted () {
-    this.$store.dispatch('getPackageList')
-  },
   computed: {
     tableData: function () {
       return this.$store.state.packageList
@@ -79,22 +70,6 @@ export default {
   methods: {
     confirmPackage (index, row) {
       this.$store.dispatch('updatePackageByStatusIsTwo', { package: { waybillNumber: row.waybillNumber } })
-    },
-    clickAll () {
-      this.$store.dispatch('getPackageList')
-    },
-    clickBooked () {
-      this.$store.dispatch('getPackageListByStatus', {status: 1})
-    },
-    clickPackaged () {
-      this.$store.dispatch('getPackageListByStatus', {status: 2})
-    },
-    clickNotBooked () {
-      this.$store.dispatch('getPackageListByStatus', {status: 0})
-    },
-    addPackage () {
-      this.$store.commit('changeActiveMenuItem', { activeMenuItem: 'parcel-storage' })
-      this.$router.push('/parcel-storage')
     }
   }
 }

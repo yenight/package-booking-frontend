@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import PackageStation from './components/PackageStation'
-import Reservation from './components/Reservation'
-import ParcelStorage from './components/ParcelStorage'
+import PackageStation from './views/PackageStation'
+import Reservation from './views/Reservation'
+import ParcelStorage from './views/ParcelStorage'
 
 Vue.use(Router)
 
